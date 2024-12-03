@@ -1,10 +1,10 @@
-from flask import Flask
+from http.server import BaseHTTPRequestHandler
 
-app = Flask(__name__)
+class handler(BaseHTTPRequestHandler):
 
-@app.route('/')
-def home():
-    return "Hello from Vercel!"
-
-if __name__ == '__main__':
-    app.run()
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header('Content-type','text/plain')
+        self.end_headers()
+        self.wfile.write('Hello, world!'.encode('utf-8'))
+        return
